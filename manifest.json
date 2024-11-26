@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Emotionserkennung von Texten",
+    "version": "1.0.0",
+    "author": "Clarisse Tiongson",
+    "description": "Chrome-Extension zur Erkennung emotionaler Tonalitäten in Texten.",
+    "permissions": ["activeTab", "scripting"],
+    "host_permissions": ["https://*.example.com/*"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "image/icon.png"
+    }
+}
