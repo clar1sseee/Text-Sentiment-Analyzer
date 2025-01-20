@@ -42,7 +42,7 @@ document
           { action: "analyzeText", text: selectedText },
           (response) => {
             if (response?.score !== undefined) {
-              let sentimentLabel = "Neutral 🙂";
+              let sentimentLabel = "Neutral 😐";
               if (response.score > 0.0) sentimentLabel = "Positive 😄";
               else if (response.score < 0.0) sentimentLabel = "Negative 😠";
 

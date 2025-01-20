@@ -39,7 +39,7 @@ function addContainersToPosts() {
       { action: "analyzeText", text: textContent },
       (response) => {
         if (response?.score !== undefined) {
-          let sentimentEmoji = "🙂";
+          let sentimentEmoji = "😐";
           if (response.score > 0.0) sentimentEmoji = "😄";
           else if (response.score < 0.0) sentimentEmoji = "😠";
 
