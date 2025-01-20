@@ -1,6 +1,6 @@
 function addContainersToPosts() {
   const posts = document.querySelectorAll(
-    "a[data-ks-id][slot='full-post-link']"
+    'article[role="article"], a[data-ks-id][slot="full-post-link"]'
   );
 
   posts.forEach((post) => {
@@ -21,10 +21,8 @@ function addContainersToPosts() {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 20px;
-          z-index: 9999;
           font-size: 40px;
-        `;
+          z-index: 9999;`;
 
     post.parentElement.style.position = "relative";
     post.parentElement.appendChild(container);
@@ -48,7 +46,55 @@ function addContainersToPosts() {
   });
 }
 
-const observer = new MutationObserver(addContainersToPosts);
-observer.observe(document.body, { childList: true, subtree: true });
+// Beobachtung von DOM-Änderungen mit MutationObserver
+if (typeof observer === "undefined") {
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (
+        mutation.addedNodes &&
+        [...mutation.addedNodes].some(
+          (node) =>
+            node.nodeType === 1 &&
+            node.matches(
+              'article[role="article"], a[data-ks-id][slot="full-post-link"]'
+            )
+        )
+      ) {
+        addContainersToPosts();
+      }
+    });
+  });
 
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+
+// Initialen Aufruf sicherstellen
 addContainersToPosts();
+// Überprüfen, ob content.js bereits aktiv ist
+if (!window.isContentActive) {
+  window.isContentActive = true;
+
+  // Beispiel: Hinzufügen eines dynamischen Elements
+  const dynamicElement = document.createElement("div");
+  dynamicElement.className = "dynamic-element";
+  dynamicElement.textContent = "Injected content by content.js";
+  document.body.appendChild(dynamicElement);
+
+  // Beispiel: Hinzufügen einer Klasse
+  document.body.classList.add("custom-class");
+
+  // Cleanup-Funktion definieren
+  window.cleanUpContent = () => {
+    // Entferne dynamisch hinzugefügte Elemente
+    document.querySelectorAll(".dynamic-element").forEach((el) => el.remove());
+    document.body.classList.remove("custom-class");
+    window.isContentActive = false;
+    console.log("Cleanup abgeschlossen: Änderungen von content.js entfernt.");
+  };
+
+  console.log("content.js aktiviert: Elemente hinzugefügt.");
+} else {
+  console.log(
+    "content.js ist bereits aktiv, keine weiteren Änderungen vorgenommen."
+  );
+}

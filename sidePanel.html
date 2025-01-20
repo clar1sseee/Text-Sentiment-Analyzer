@@ -4,12 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Text Sentiment Analyzer</title>
-    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="sidePanel.css" />
   </head>
   <body>
+    <div class="switch-container">
+      <label class="switch">
+        <input type="checkbox" id="analyzeSM" />
+        <span class="slider round"></span>
+      </label>
+      <span class="switch-label">Analyze X & Reddit</span>
+    </div>
     <div class="container">
       <div class="heading">
-        <h1>Emotionserkennung</h1>
+        <h1>Text Sentiment Analyzer</h1>
       </div>
       <div class="content">
         <h2>Welcome</h2>
@@ -31,9 +38,6 @@
         <p id="errorMessage" class="error"></p>
       </div>
     </div>
-    <button id="analyzeSM">Analyze X & Reddit</button>
-
-    <script src="popup.js"></script>
-    <script src="content.js"></script>
+    <script src="sidePanel.js"></script>
   </body>
 </html>
