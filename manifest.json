@@ -1,16 +1,26 @@
 {
   "manifest_version": 3,
-  "name": "Emotionserkennung von Texten",
+  "name": "Text Sentiment Analyzer",
   "version": "1.0.0",
   "author": "Clarisse Tiongson",
-  "description": "Chrome-Extension zur Erkennung emotionaler Tonalitäten in Texten.",
-  "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["<all_urls>"],
+  "description": "Chrome Extension zur Erkennung emotionaler Tonalitäten in Texten.",
+  "permissions": ["activeTab", "scripting", "sidePanel"],
+  "host_permissions": ["https://*.x.com/*", "https://*.twitter.com/*"],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html",
     "default_icon": "iconImage/icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.x.com/*", "https://*.twitter.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "side_panel": {
+    "default_path": "popup.html"
   }
 }

@@ -3,14 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emotionserkennung von Texten</title>
+    <title>Text Sentiment Analyzer</title>
     <link rel="stylesheet" href="popup.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body>
     <div class="container">
@@ -20,13 +14,26 @@
       <div class="content">
         <h2>Welcome</h2>
         <p>
-          Let's analyze emotions. Mark the text and click on
-          <strong>"Analyze"</strong>.
+          Let's analyze emotions. Select any text on the current page and click
+          on <strong>"Analyze"</strong>.
         </p>
         <button id="analyzeButton">Analyze</button>
-        <p id="result"></p>
+
+        <p id="initialMessage">The result will appear here.</p>
+
+        <div id="result" class="hidden">
+          <p><strong>Selected Text:</strong> <span id="selectedText"></span></p>
+          <p><strong>Mood:</strong> <span id="mood"></span></p>
+          <p>
+            <strong>Sentiment Score:</strong> <span id="sentimentScore"></span>
+          </p>
+        </div>
+        <p id="errorMessage" class="error"></p>
       </div>
     </div>
+    <button id="analyzeSM">Analyze X & Reddit</button>
+
     <script src="popup.js"></script>
+    <script src="content.js"></script>
   </body>
 </html>
