@@ -7,14 +7,13 @@
   "permissions": ["activeTab", "scripting", "sidePanel"],
   "host_permissions": [
     "https://*.x.com/*",
-    "https://*.twitter.com/*",
-    "https://*.reddit.com/*"
+    "https://*.reddit.com/*",
+    "https://language.googleapis.com/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "sidePanel.html",
     "default_icon": "iconImage/icon.png"
   },
   "content_scripts": [

@@ -58,3 +58,15 @@ document
       }
     );
   });
+document
+  .getElementById("analyzeSM")
+  .addEventListener("change", function (event) {
+    const isEnabled = event.target.checked;
+
+    chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
+      chrome.tabs.sendMessage(tab.id, {
+        action: "toggleSwitch",
+        enabled: isEnabled,
+      });
+    });
+  });
