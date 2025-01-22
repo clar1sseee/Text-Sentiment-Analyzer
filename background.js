@@ -4,6 +4,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   const apiKey = "AIzaSyCnorFFJMrZWeZFdkcf5wrP9tkD6AXVzrM";
   const apiUrl = `https://language.googleapis.com/v1/documents:analyzeSentiment?key=${apiKey}`;
 
+  //Postanfrage an API
   fetch(apiUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -12,7 +13,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       encodingType: "UTF8",
     }),
   })
-    .then((response) => response.json())
+    .then((response) => response.json()) //JSON zu JavaScript
+    //Data wird zurückgegeben
     .then((data) =>
       sendResponse(data.documentSentiment || { error: "Invalid API response" })
     )

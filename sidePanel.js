@@ -2,6 +2,7 @@ document
   .getElementById("analyzeButton")
   .addEventListener("click", async function () {
     const [tab] = await chrome.tabs.query({
+      //Tab info werden gelesen bzw gespeichert
       active: true,
       currentWindow: true,
     });
@@ -9,11 +10,13 @@ document
     chrome.scripting.executeScript(
       {
         target: { tabId: tab.id },
+        //Funktion um markierten Text zu lesen
         func: () => window.getSelection().toString(),
       },
       (injectionResults) => {
         const selectedText = injectionResults[0]?.result;
 
+        //Referenzen auf HTML Elemente
         const initialMessage = document.getElementById("initialMessage");
         const resultContainer = document.getElementById("result");
         const selectedTextElement = document.getElementById("selectedText");
@@ -21,11 +24,13 @@ document
         const scoreElement = document.getElementById("sentimentScore");
         const errorMessage = document.getElementById("errorMessage");
 
+        //Zurücksetzen
         selectedTextElement.textContent = "";
         moodElement.textContent = "";
         scoreElement.textContent = "";
         errorMessage.textContent = "";
 
+        //Überprüfung, ob Text markiert wurde
         if (!selectedText) {
           errorMessage.textContent = "No text selected.";
           resultContainer.classList.add("hidden");
@@ -36,8 +41,9 @@ document
         errorMessage.textContent = "";
         initialMessage.style.display = "none";
         resultContainer.classList.remove("hidden");
-        selectedTextElement.textContent = selectedText;
+        selectedTextElement.textContent = selectedText; //Text wird Angezeigt
 
+        //An Background gesendet
         chrome.runtime.sendMessage(
           { action: "analyzeText", text: selectedText },
           (response) => {
@@ -46,9 +52,11 @@ document
               if (response.score > 0.0) sentimentLabel = "Positive 😄";
               else if (response.score < 0.0) sentimentLabel = "Negative 😠";
 
+              //Ergebnis Anzeige
               moodElement.textContent = sentimentLabel;
               scoreElement.textContent = response.score;
             } else {
+              //Fehler Anzeige
               errorMessage.textContent = "Error analyzing text.";
               resultContainer.classList.add("hidden");
               initialMessage.style.display = "block";
@@ -58,12 +66,14 @@ document
       }
     );
   });
+
 document
-  .getElementById("analyzeSM")
+  .getElementById("checkboxAnalyzeSM")
   .addEventListener("change", function (event) {
-    const isEnabled = event.target.checked;
+    const isEnabled = event.target.checked; //Prüft welcher stand Checkbox ist
 
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
+      //sendet Nachricht an content script, um zu schauen ob Funktion enabled ist oder nicht
       chrome.tabs.sendMessage(tab.id, {
         action: "toggleSwitch",
         enabled: isEnabled,

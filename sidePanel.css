@@ -12,6 +12,10 @@ body {
   justify-content: flex-start;
 }
 
+*:focus {
+  outline: 2px blue;
+}
+
 #analyzeSM {
   font-size: 15px;
   color: white;
@@ -148,7 +152,7 @@ input:checked + .slider:before {
 }
 
 #result p {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 #errorMessage {
@@ -185,11 +189,6 @@ input:checked + .slider:before {
     font-size: 12px;
     right: 10px;
     top: 10px;
-  }
-
-  .container {
-    margin-top: 80px;
-    padding: 15px;
   }
 
   .heading h1 {

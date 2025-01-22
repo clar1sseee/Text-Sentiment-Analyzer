@@ -1,15 +1,19 @@
-let isSwitchEnabled = false;
+let isSwitchEnabled = false; // Switch ist Deaktiviert
 
 function addContainersToPosts() {
+  //Container Funktion
   if (!isSwitchEnabled) return;
 
   const posts = document.querySelectorAll(
+    //Container werden rausgesucht
     'article[role="article"], a[data-ks-id][slot="full-post-link"]'
   );
 
   posts.forEach((post) => {
+    //Überspringen von Posts die schon Container haben
     if (post.parentElement.querySelector(".custom-container")) return;
 
+    //Container
     const container = document.createElement("div");
     container.className = "custom-container";
     container.style.cssText = `
@@ -33,8 +37,10 @@ function addContainersToPosts() {
     post.parentElement.style.position = "relative";
     post.parentElement.appendChild(container);
 
+    //Inhalt bzw URL wird genommen
     const textContent = post.innerText || post.getAttribute("href");
 
+    //Sendet Text zur Analysis
     chrome.runtime.sendMessage(
       { action: "analyzeText", text: textContent },
       (response) => {
@@ -52,18 +58,20 @@ function addContainersToPosts() {
   });
 }
 
+//DOM Änderungen und Funktions aufruf
 const observer = new MutationObserver(addContainersToPosts);
 observer.observe(document.body, { childList: true, subtree: true });
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "toggleSwitch") {
-    isSwitchEnabled = message.enabled;
+    isSwitchEnabled = message.enabled; //Switch aktualisieren
     if (!isSwitchEnabled) {
+      //Switch OFF
       document.querySelectorAll(".custom-container").forEach((container) => {
         container.remove();
       });
     } else {
-      addContainersToPosts();
+      addContainersToPosts(); //Switch ON
     }
   }
 });
