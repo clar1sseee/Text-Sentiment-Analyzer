@@ -1,3 +1,21 @@
+function updateEmojiAriaLabel(container) {
+  //aria label für emojis
+  const emoji = container.textContent.trim();
+
+  let ariaLabel;
+  if (emoji === "😐") {
+    ariaLabel = "neutral emotion";
+  } else if (emoji === "😄") {
+    ariaLabel = "positive emotion";
+  } else if (emoji === "😠") {
+    ariaLabel = "negative emotion";
+  } else {
+    ariaLabel = "unknown emotion";
+  }
+
+  container.setAttribute("aria-label", ariaLabel);
+}
+
 let isSwitchEnabled = false; // Switch ist Deaktiviert
 
 function addContainersToPosts() {
@@ -50,8 +68,10 @@ function addContainersToPosts() {
           else if (response.score < 0.0) sentimentEmoji = "😠";
 
           container.textContent = sentimentEmoji;
+          updateEmojiAriaLabel(container);
         } else {
           container.textContent = "❌";
+          updateEmojiAriaLabel(container);
         }
       }
     );
