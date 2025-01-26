@@ -51,6 +51,14 @@ function addContainersToPosts() {
           z-index: 9999;
           font-size: 40px;
         `;
+    container.setAttribute("tabindex", "0"); //mit Tab lesbar
+    container.setAttribute("role", "status"); //status element mit dynamischen
+    container.addEventListener("focus", () => {
+      container.style.outline = "2px solid black"; //Fokus
+    });
+    container.addEventListener("blur", () => {
+      container.style.outline = "none"; // Fokus entfernen
+    });
 
     post.parentElement.style.position = "relative";
     post.parentElement.appendChild(container);
