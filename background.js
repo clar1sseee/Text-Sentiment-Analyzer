@@ -22,3 +22,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   return true;
 });
+//Wenn ein command ausgelöst wird, dann wird eine Nachricht gesendet
+chrome.commands.onCommand.addListener((command) => {
+  if (command === "simulate_click_switch") {
+    chrome.runtime.sendMessage({ action: "simulate_click_switch" });
+  } else if (command === "simulate_click_analyze") {
+    chrome.runtime.sendMessage({ action: "simulate_click_analyze" });
+  }
+});

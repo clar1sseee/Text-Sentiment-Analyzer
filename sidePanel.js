@@ -80,3 +80,22 @@ document
       });
     });
   });
+
+//Überprüft die aktion und führt das jeweilige Button aus
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === "simulate_click_switch") {
+    const switchButton = document.querySelector("#checkboxAnalyzeSM");
+    if (switchButton) {
+      switchButton.click();
+    } else {
+      console.error("Switch-Button (#checkboxAnalyzeSM) nicht gefunden");
+    }
+  } else if (message.action === "simulate_click_analyze") {
+    const analyzeButton = document.querySelector("#analyzeButton");
+    if (analyzeButton) {
+      analyzeButton.click();
+    } else {
+      console.error("Analyze-Button (#analyzeButton) nicht gefunden");
+    }
+  }
+});

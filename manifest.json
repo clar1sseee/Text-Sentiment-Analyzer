@@ -29,5 +29,21 @@
   ],
   "side_panel": {
     "default_path": "sidePanel.html"
+  },
+  "commands": {
+    "simulate_click_switch": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Simulate click on switch"
+    },
+    "simulate_click_analyze": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
+      },
+      "description": "Simulate click on Analyze Button"
+    }
   }
 }
