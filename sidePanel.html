@@ -8,7 +8,11 @@
   </head>
   <body>
     <div class="checkbox-container">
-      <input type="checkbox" id="checkboxAnalyzeSM" tabindex="0" />
+      <input
+        type="checkbox"
+        id="checkboxAnalyzeSM"
+        aria-label="Analyze Social Media"
+      />
       <label for="checkboxAnalyzeSM" class="slider"></label>
       <span class="checkbox-label">Analyze Social Media</span>
     </div>
@@ -22,7 +26,9 @@
           Let's analyze emotions. Select any text on the current page and click
           on <strong>"Analyze"</strong>.
         </p>
-        <button id="analyzeButton" tabindex="0">ANALYZE</button>
+        <button id="analyzeButton" tabindex="0" aria-label="Analyze Button">
+          ANALYZE
+        </button>
         <p id="initialMessage">The result will appear here.</p>
         <div id="result" class="hidden">
           <p><strong>Selected Text:</strong> <span id="selectedText"></span></p>
