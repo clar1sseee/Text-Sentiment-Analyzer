@@ -5,11 +5,7 @@
   "author": "Clarisse Tiongson",
   "description": "Chrome Extension zur Erkennung emotionaler Tonalitäten in Texten.",
   "permissions": ["activeTab", "scripting", "sidePanel"],
-  "host_permissions": [
-    "https://*.x.com/*",
-    "https://*.reddit.com/*",
-    "https://language.googleapis.com/*"
-  ],
+  "host_permissions": ["<all_urls>", "https://language.googleapis.com/*"],
   "background": {
     "service_worker": "background.js"
   },
@@ -18,11 +14,7 @@
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://*.x.com/*",
-        "https://*.twitter.com/*",
-        "https://*.reddit.com/*"
-      ],
+      "matches": ["<all_urls>"],
       "js": ["content.js"],
       "run_at": "document_idle"
     }
