@@ -32,7 +32,9 @@ Die **Chrome Extension: Text Sentiment Analyzer** wurde entwickelt, um Menschen 
 
 3. **Extension verwenden:**
    - Markiere einen Text auf einer Webseite und klicke auf das Extension-Icon, um die Analyse zu starten.
+     Keyboard Shortcut: Windows: Ctrl +Shift + X / Mac: Command + Shift + X
    - Navigiere zu X oder Reddit und aktiviere den Schalter, um die Analyse von Beiträgen auf der Plattform zu starten.
+     Keyboard Shortcut: Windows: Ctrl + Shift+ Y / Mac: Command + Shift + Y
 
 ## 🛠️ Technologie
 
