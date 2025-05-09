@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background: linear-gradient(135deg, #ffcad4, #f7e3e7);
-  color: #333333;
+  color: #222222;
   box-sizing: border-box;
   height: 100vh;
   display: flex;
@@ -67,7 +67,7 @@ body {
   font-size: 18px;
   color: #4d2933;
   letter-spacing: 0.5px;
-  background-color: rgba(255, 255, 255, 0.658);
+  background-color: white;
   border-radius: 5px;
   padding: 5px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -86,7 +86,7 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.8);
+  background: white;
   backdrop-filter: blur(10px);
 }
 
