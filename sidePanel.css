@@ -37,7 +37,7 @@ body {
   position: relative;
   width: 50px;
   height: 25px;
-  background-color: #ccc;
+  background-color: black;
   border-radius: 25px;
   transition: background-color 0.3s ease;
 }
@@ -134,7 +134,7 @@ body {
 #analyzeButton {
   font-size: 16px;
   color: #ffffff;
-  background-color: #cf6d89;
+  background-color: #bf4d6f;
   border: none;
   border-radius: 12px;
   margin-top: 10px;
@@ -145,7 +145,7 @@ body {
 }
 
 #analyzeButton:hover {
-  background-color: #c9899b;
+  background-color: #c23861;
   transform: translateY(-2px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
